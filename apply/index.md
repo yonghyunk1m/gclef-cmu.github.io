@@ -6,7 +6,7 @@ title: "Apply"
 
 ## About G-CLef
 
-We are the [**Generative Creativity Lab (G-CLef)**](https://chrisdonahue.com/#group) in the Computer Science Department (CSD) at Carnegie Mellon University. Our mission is to _empower and enrich human creativity with generative AI_. We focus primarily on the intersection of _music and AI_, though we also work on other applications such as code, gaming, and language. Our current research interests can be found [below](#research-interests). The G-CLef lab is led by [Chris Donahue](https://chrisdonahue.com), Dannenberg Assistant Professor at CMU CSD.
+We are the [**Generative Creativity Lab (G-CLef)**](./README.md) in the Computer Science Department (CSD) at Carnegie Mellon University. Our mission is to _empower and enrich human creativity with generative AI_. We focus primarily on the intersection of _music and AI_, though we also work on other applications such as code, gaming, and language. Our current research interests can be found [below](#research-interests). The G-CLef lab is led by [Chris Donahue](https://chrisdonahue.com), Dannenberg Assistant Professor at CMU CSD.
 
 ## Applying
 
@@ -28,15 +28,11 @@ Note that PhD admissions decisions are ultimately made by the CSD PhD admissions
 
 At CMU, the School of Computer Science (SCS) has many departments, one of which is (somewhat confusingly) named the Computer Science Department (CSD). I am affiliated w/ CSD, so **make sure to apply to CSD via the "Ph.D. Computer Science"** option to ensure your application will be routed properly.
 
-<p align="center">
-<img src="2025-program.png" width="99%"/>
-</p>
+![CMU CSD PhD application program](./2025-program.png)
 
 Also, click on "Add Areas/Faculty of Interest" and add either "Artificial Intelligence" or "Machine Learning" as your 1st choice, and "Donahue, Christopher" as a faculty of interest.
 
-<p align="center">
-<img src="2025-areas.png" width="99%"/>
-</p>
+![CMU CSD PhD application areas](./2025-areas.png)
 
 ## Other applicants
 
@@ -67,4 +63,4 @@ A few of our recent and ongoing projects:
 
 ## Additional resources
 
-- [Somewhat out of date research statement](https://raw.githubusercontent.com/gclef-cmu/apply/refs/heads/main/2024%20Research%20Statement.pdf) from Spring 2024.
+- [Somewhat out of date research statement](./2024%20Research%20Statement.pdf) from Spring 2024.
