@@ -16,7 +16,7 @@ Note that we have limited bandwidth / funding in our lab and unfortunately do no
 
 ## PhD applicants
 
-**We are recruiting PhD students for a Fall 2025 start date**. To apply, please formally apply to the [CMU CSD PhD program by December 11, 2024](https://csd.cmu.edu/academics/doctoral/admissions), details below.
+To apply for a PhD with the G-CLef lab for a **Fall 2026 start date**, please formally apply to the [CMU CSD PhD program by December 10, 2025](https://csd.cmu.edu/academics/doctoral/admissions), details below.
 
 **Optionally**, feel free to submit our [lab-specific application form](https://forms.gle/H4Pq9ufJwgccJ8jN7) in advance of your official CSD PhD application. This is intended to be low effort relative to the official application, and is mainly used to ensure that we don't miss any official applications from students who are particularly interested in G-CLef. Your official application will be reviewed equally regardless of if you submit this lab-specific form.
 
@@ -24,7 +24,9 @@ Note that PhD admissions decisions are ultimately made by the CSD PhD admissions
 
 ### Formally applying to the CMU CSD PhD program
 
-**Apply via the main [CMU School of Computer Science PhD application](https://www.cs.cmu.edu/academics/graduate-admissions) by December 11th 2024!** Additional [instructions](https://www.cs.cmu.edu/academics/application_instructions) and [FAQs](https://www.cs.cmu.edu/academics/faq).
+**Apply via the main [CMU School of Computer Science PhD application](https://csd.cmu.edu/academics/doctoral/admissions) by December 10th 2025!**
+
+**Note**: The following instructions have not yet been updated for the 2025-2026 application cycle, and the instructions below may be out of date.
 
 At CMU, the School of Computer Science (SCS) has many departments, one of which is (somewhat confusingly) named the Computer Science Department (CSD). I am affiliated w/ CSD, so **make sure to apply to CSD via the "Ph.D. Computer Science"** option to ensure your application will be routed properly.
 
@@ -36,7 +38,7 @@ Also, click on "Add Areas/Faculty of Interest" and add either "Artificial Intell
 
 ## Other applicants
 
-For non-PhD applicants (postdoc, CMU masters / undergrad, visitors), please apply using [this form](https://docs.google.com/forms/d/1DI4dAG_zp6HmbJx_0rxqWJYU3XEIzGUQTXXJNcuZiKc/edit). For CMU students, I typically only work with students who have taken and done well in my _Intro to Computer Music_ course (15322 for undergrads, 15622 for grads), though there are occasional exceptions to this.
+For non-PhD applicants (postdoc, CMU masters / undergrad, visitors), please apply using [this form](https://docs.google.com/forms/d/1DI4dAG_zp6HmbJx_0rxqWJYU3XEIzGUQTXXJNcuZiKc/edit). For CMU students, I typically only work with students who have taken and done well in my _Intro to Computer Music_ course (15322 for undergrads, 15622 for grads) or my graduate music AI seminar (15798), though there are occasional exceptions to this.
 
 ## Research interests
 
