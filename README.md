@@ -17,26 +17,26 @@ The G-CLef lab is led by [Chris Donahue](https://chrisdonahue.com), Dannenberg A
 <ul>
     <li>
         <img src="./static/headshots/wayne.jpeg" width="100px">
-        [Wayne Chi](https://waynechi.com/) (CSD PhD student)
+        <a href="https://waynechi.com/">Wayne Chi</a> (CSD PhD student)
     </li>
     <li>
         <img src="./static/headshots/irmak.jpeg" width="100px">
-        [Irmak Bukey](https://jasonzhang.me/) (CSD PhD student)
+        <a href="https://jasonzhang.me/">Irmak Bukey</a> (CSD PhD student)
     </li>
     <li>
         <img src="./static/headshots/yewon.jpeg" width="100px">
-        [Yewon Kim](https://yewonkim.com/) (CSD PhD student)
+        <a href="https://yewonkim.com/">Yewon Kim</a> (CSD PhD student)
     </li>
     <li>
         <img src="./static/headshots/nathan.jpeg" width="100px">
-        [Nathan Pruyne](https://nathanpruyne.com/) (CSD PhD student)
+        <a href="https://nathanpruyne.com/">Nathan Pruyne</a> (CSD PhD student)
     </li>
     <li>
         <img src="./static/headshots/alex.jpeg" width="100px">
-        [Alexander Wang](https://ayw0.github.io/) (HCII PhD student)
+        <a href="https://ayw0.github.io/">Alexander Wang</a> (HCII PhD student)
     </li>
     <li>
         <img src="./static/headshots/satvik.jpeg" width="100px">
-        [Satvik Dixit](https://satvik-dixit.github.io/) (ECE MS student)
+        <a href="https://satvik-dixit.github.io/">Satvik Dixit</a> (ECE MS student)
     </li>
 </ul>
