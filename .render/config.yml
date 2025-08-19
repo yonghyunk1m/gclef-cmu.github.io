@@ -1,6 +1,6 @@
 site_title: "🎼 G-CLef @ CMU"
 home_md: "README.md"
 nav:
-  - README.md: "Home"
-  - blog/index.md: "Blog"
-  - apply/index.md: "Apply"
+  - "Home": "README.md"
+  - "Blog": "blog/index.md"
+  - "Apply": "apply/index.md"
