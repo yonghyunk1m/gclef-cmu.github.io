@@ -1,5 +1,7 @@
 # Generative Creativity Lab
 
+<img src="./static/logo.png" width="200px">
+
 We are the Generative Creativity Lab (G-CLef), part of the Computer Science Department at Carnegie Mellon University.
 
 Our mission is to _empower and enrich human creativity and productivity with generative AI_. We focus primarily on the intersection of music and AI, though we also work on other applications such as programming, gaming, and natural language.
