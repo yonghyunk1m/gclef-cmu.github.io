@@ -41,6 +41,33 @@ function escapeHtml(text) {
     return text.replace(/[&<>"']/g, (m) => map[m]);
 }
 
+// Add id attributes to headings (simple deterministic slug)
+function addHeadingIds(htmlContent) {
+    const dom = new JSDOM(`<!DOCTYPE html><body>${htmlContent}</body>`);
+    const document = dom.window.document;
+    const used = new Set();
+    function slugify(text) {
+        return String(text || "")
+            .toLowerCase()
+            .replace(/<[^>]*>/g, "")
+            .trim()
+            .replace(/[^\w\s-]/g, "")
+            .replace(/\s+/g, "-")
+            .replace(/-+/g, "-");
+    }
+    document.querySelectorAll("h1,h2,h3,h4,h5,h6").forEach((h) => {
+        const base = slugify(h.textContent);
+        let id = base;
+        let i = 1;
+        while (id && used.has(id)) id = `${base}-${i++}`;
+        if (id) {
+            h.setAttribute("id", id);
+            used.add(id);
+        }
+    });
+    return document.body.innerHTML;
+}
+
 /* Recursively walk files under startDir (excluding hidden/system dirs) and invoke onFile for each file. */
 async function walkFiles(startDir, onFile) {
     const excludeNames = new Set([
@@ -123,8 +150,10 @@ function computeOutputHtmlPath(mdPath, homeMdBasename) {
     const base = path.basename(rel);
     const dir = path.dirname(rel);
 
-    // Home page special case
-    if (dir === "." && base === homeMdBasename) {
+    // Home page special cases
+    // - Configured home page
+    // - Conventional root README.md
+    if (dir === "." && (base === homeMdBasename || base === "README.md")) {
         return path.join(OUTPUT_ROOT, "index.html");
     }
 
@@ -143,64 +172,65 @@ function computeOutputHtmlPath(mdPath, homeMdBasename) {
 }
 
 /*
-Rewrite relative links/resources in rendered HTML:
-- .md links are converted to their output paths (stripping index.html/.html for clean URLs)
-- Non-markdown assets are rebased relative to repo root
-- External links, mailto/tel, and hashes are left unchanged
+Rewrite links/resources in rendered HTML (KISS):
+- Leave hrefs and their anchors as-authored (no slug normalization, no .md rewriting)
+- Rebase asset src paths relative to the output page directory
+- Skip external links and mailto/tel
 */
-function rewriteLinksHtml(htmlContent, sourceMdPath, homeMdBasename) {
+function rebaseAssetSrcPaths(htmlContent, sourceMdPath, currentOutPath) {
     const dom = new JSDOM(`<!DOCTYPE html><body>${htmlContent}</body>`);
     const document = dom.window.document;
     const sourceDir = path.dirname(sourceMdPath);
+    const currentDir = path.dirname(currentOutPath);
 
-    // Process all links and resources
     document
         .querySelectorAll(
             "a[href], img[src], video[src], audio[src], source[src], link[href], script[src]"
         )
         .forEach((el) => {
-            const attr = el.hasAttribute("href") ? "href" : "src";
+            const isHref = el.hasAttribute("href");
+            const attr = isHref ? "href" : "src";
             const raw = el.getAttribute(attr);
-            if (!raw) return;
+            if (typeof raw !== "string" || raw.length === 0) return;
 
-            // Skip external links and anchors
+            // Skip external links
             if (/^(https?:)?\/\//i.test(raw)) return;
-            if (/^(mailto:|tel:|#)/i.test(raw)) return;
+            if (/^(mailto:|tel:)/i.test(raw)) return;
 
-            // Extract path without query/hash
-            const [urlPath, ...rest] = raw.split(/[#?]/);
-            const suffix = rest.length ? raw.slice(urlPath.length) : "";
+            // Keep pure anchors as-authored
+            if (raw.startsWith("#")) return;
 
-            // Resolve target path
-            const targetAbs = path.resolve(sourceDir, decodeURI(urlPath));
-            const targetRel = path.relative(REPO_ROOT, targetAbs);
+            // Split into [path+query] and [hash]
+            const hashIndex = raw.indexOf("#");
+            const baseAndQuery = hashIndex >= 0 ? raw.slice(0, hashIndex) : raw;
+            const anchorPart = hashIndex >= 0 ? raw.slice(hashIndex + 1) : "";
 
-            // For .md files, compute output path and strip .html
-            let newHref;
-            if (/\.md$/i.test(urlPath)) {
-                const targetOut = computeOutputHtmlPath(
-                    targetAbs,
-                    homeMdBasename
-                );
-                const sourceOut = computeOutputHtmlPath(
-                    sourceMdPath,
-                    homeMdBasename
-                );
-                newHref = path.relative(path.dirname(sourceOut), targetOut);
-                // Strip index.html or .html for cleaner URLs
-                newHref =
-                    newHref
-                        .replace(/\/index\.html$/, "")
-                        .replace(/\.html$/, "") || ".";
-            } else {
-                // Non-markdown files stay as-is
-                newHref = path.join(
-                    "../".repeat(targetRel.split(path.sep).length - 1),
-                    targetRel
-                );
+            // Further split base into [path] and [query]
+            const qIndex = baseAndQuery.indexOf("?");
+            let pathPart =
+                qIndex >= 0 ? baseAndQuery.slice(0, qIndex) : baseAndQuery;
+            const queryPart = qIndex >= 0 ? baseAndQuery.slice(qIndex) : "";
+
+            // Adjust paths
+            if (!isHref) {
+                // For assets: rebase relative to output location
+                // Resolve asset absolute path based on source markdown file location
+                const assetAbs = path.resolve(sourceDir, decodeURI(pathPart));
+                const assetRelFromRepo = path.relative(REPO_ROOT, assetAbs);
+                const assetOutPath = path.join(OUTPUT_ROOT, assetRelFromRepo);
+                // Compute path from current output dir to the asset's output path
+                pathPart = path
+                    .relative(currentDir, assetOutPath)
+                    .split(path.sep)
+                    .join("/");
             }
 
-            el.setAttribute(attr, newHref.split(path.sep).join("/") + suffix);
+            // Reconstruct without modifying the anchor
+            const hash = anchorPart ? "#" + anchorPart : "";
+            let newValue = pathPart + queryPart + hash;
+            if (newValue === "" && isHref) newValue = ".";
+
+            el.setAttribute(attr, newValue);
         });
 
     return document.body.innerHTML;
@@ -368,6 +398,8 @@ async function renderPage(mdPath, ctx) {
 
     // Convert to HTML
     let html = marked(body);
+
+    // Configure DOMPurify to preserve IDs on headings
     html = purify.sanitize(html, {
         ADD_TAGS: ["iframe", "video", "audio", "source"],
         ADD_ATTR: [
@@ -379,8 +411,31 @@ async function renderPage(mdPath, ctx) {
             "controls",
         ],
         ALLOW_DATA_ATTR: true,
+        // Allow ID attribute on all elements (especially headings)
+        ALLOWED_ATTR: [
+            "href",
+            "title",
+            "id",
+            "class",
+            "src",
+            "alt",
+            "target",
+            "rel",
+            "frameborder",
+            "allowfullscreen",
+            "autoplay",
+            "controls",
+            "width",
+            "height",
+        ],
     });
-    html = rewriteLinksHtml(html, mdPath, homeMdBasename);
+
+    // Compute current page output path to correctly rebase assets
+    const pageOut = computeOutputHtmlPath(mdPath, homeMdBasename);
+
+    // Add heading ids and rebase asset src paths
+    html = addHeadingIds(html);
+    html = rebaseAssetSrcPaths(html, mdPath, pageOut);
 
     // Extract title with priority: frontmatter.title -> first H1 -> config.site_title
     let title;
@@ -411,7 +466,6 @@ async function renderPage(mdPath, ctx) {
     }
 
     // Build nav
-    const pageOut = computeOutputHtmlPath(mdPath, homeMdBasename);
     const homeOut = computeOutputHtmlPath(
         path.join(REPO_ROOT, config.home_md),
         homeMdBasename
