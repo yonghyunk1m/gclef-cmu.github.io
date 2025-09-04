@@ -1,6 +1,6 @@
 # Music Arena: Announcing a New Platform for Live Evaluation of Text-to-Music Models
 
-**Contributors:** Yonghyun Kim, Wayne Chi, Anastasios Angelopoulos, Wei-Lin Chiang, Koichi Saito, Shinji Watanabe, Yuki Mitsufuji, and Chris Donahue.
+**Contributors:** [Yonghyun Kim](https://yonghyunk1m.com), **[Wayne Chi](https://waynechi.com/)**, [Anastasios Angelopoulos](https://people.eecs.berkeley.edu/~angelopoulos/), [Wei-Lin Chiang](https://infwinston.github.io/), [Koichi Saito](https://scholar.google.com/citations?user=UT-g5BAAAAAJ&hl=en), [Shinji Watanabe](https://sites.google.com/view/shinjiwatanabe), [Yuki Mitsufuji](https://www.yukimitsufuji.com/), and **[Chris Donahue](https://chrisdonahue.com/)**.
 
 ## Introduction
 
