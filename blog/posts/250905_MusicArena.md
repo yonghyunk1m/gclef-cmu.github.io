@@ -25,7 +25,7 @@ The quality of music is inherently subjective. While automatic metrics like Fré
 
 Music Arena is designed to overcome these challenges by creating a centralized, standardized, and scalable evaluation platform that is open to everyone.
 
-![Data Lifecycle](https://github.com/yonghyunk1m/gclef-cmu.github.io/blob/main/blog/posts/figures/250905_MusicArena_fig1.pdf)
+![Data Lifecycle](https://github.com/yonghyunk1m/gclef-cmu.github.io/blob/main/blog/posts/figures/250905_MusicArena_fig1.png)
 
 > **Figure 1: Music Arena data lifecycle.** The platform consists of a Frontend for user interaction, a Backend that orchestrates generation from various Model Endpoints, and a Database to store results.
 
