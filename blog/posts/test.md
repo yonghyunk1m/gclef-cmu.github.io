@@ -41,7 +41,7 @@ TTM models are a diverse group. Some create instrumental music, while others can
   * **Route & Adapt:** Select appropriate models for the prompt and even generate lyrics for models that require them, creating a seamless experience from a single text box.
 
 ### 2. Fine-grained Preference Collection
-Music is consumed over time. A simple "A is better than B" vote doesn't tell the whole story. Music Arena collects richer data by:
+Music is consumed over time. A simple *"A is better than B"* vote doesn't tell the whole story. Music Arena collects richer data by:
 
   * **Logging Listening Data:** We track how long users listen to each track before making a decision. To ensure meaningful engagement, users must listen for a minimum of 4 seconds before the voting buttons are enabled.
   * **Collecting Natural Language Feedback:** After voting, users have the option to provide written feedback on what they liked or disliked about each track.
@@ -71,6 +71,7 @@ We hope that Music Arena will bring new clarity to TTM evaluation and provide a 
 > @misc{kim2025musicarena,
 >     title={Music Arena: Live Evaluation for Text-to-Music},
 >     author={Yonghyun Kim and Wayne Chi and Anastasios Angelopoulos and Wei-Lin Chiang and Koichi Saito and Shinji Watanabe and Yuki Mitsufuji and Chris Donahue},
+>     journal={arXiv:2507.20900},
 >     year={2025}
 > }
 > ```
